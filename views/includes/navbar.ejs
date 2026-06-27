@@ -1,0 +1,96 @@
+<style>
+    .btn-search {
+        background-color: #fe424d;
+        color: white;
+        border-radius: 25px;
+        padding: 0 1rem 0 1rem;
+    }
+
+    .btn-search:hover {
+        background-color: #fe424d;
+        color: white;
+    }
+
+    .btn-search i {
+        display: inline;
+        margin-right: 0.5rem;
+    }
+
+    .search-input {
+        border-radius: 25px;
+        padding: 0.5rem 3rem 0.5rem 3rem;
+        font-size: 0.9rem;
+    }
+</style>
+
+
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand" href="/listings">
+            <i class="fa-solid fa-house-user"></i>
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <!-- Left -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/listings">Explore</a>
+                </li>
+            </ul>
+
+            <!-- Search -->
+            <form class="d-flex search-form mx-auto" action="/listings" method="GET">
+                <input class="form-control search-input" type="search"
+                    name="search"
+                    placeholder="Search destination">
+
+                <button class="btn btn-search ms-2">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Search
+                </button>
+            </form>
+
+            <!-- Right -->
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <button id="themeToggle" class="btn">
+                        Dark Mode
+                    </button>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/listings/new">Sarai your home</a>
+                </li>
+
+                <% if(!currUser){ %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><b>Login</b></a>
+                    </li>
+                <% } %>
+
+                <% if(currUser){ %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                <% } %>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>

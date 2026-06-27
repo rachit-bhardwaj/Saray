@@ -1,0 +1,15 @@
+<% if(success && success.length) { %> <!-- here success is the empty arrry, so we use the length method -->
+    <div class="alert alert-success alert-dismissible fade show col-12 col-md-8 col-lg-6 mx-auto mt-3" role="alert">
+        <%= success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
+
+        <% if(error && error.length) { %>
+            <div class="alert alert-danger alert-dismissible fade show col-12 col-md-8 col-lg-6 mx-auto mt-3"
+                role="alert">
+                <i class="fa-solid fa-triangle-exclamation" style="color: rgb(250, 0, 0);"></i>
+                <%= error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
