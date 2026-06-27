@@ -83,9 +83,9 @@ passport.deserializeUser(User.deserializeUser());
 
 
 // home route
-// app.get('/', (req, res, next) => {
-//     res.send("Hello ");
-// });
+app.get('/', (req, res, next) => {
+    res.redirect('/listings');
+});
 
 // Session, connect-flash, userLogin/not middleware local variable
 app.use((req, res, next) =>{
