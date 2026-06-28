@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV != 'production') {
+if (process.env.NODE_ENV != 'production') {
     require('dotenv').config();
 }
 
@@ -10,7 +10,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
-const MongoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo");
 const flash = require('connect-flash');
 const passport = require('passport');
 const localStrategy = require('passport-local');
@@ -33,7 +33,7 @@ main()
         console.log('Connected to DB');
     })
     .catch((err) => {
-        console.log("Some error: " + err);
+        console.log( err);
     });
 
 // Use/Set differnt method of package
@@ -47,14 +47,11 @@ app.engine('ejs', ejsMate);
 // MongoDB Atlas session -> connect-mongo
 const storeSession = MongoStore.create({
     mongoUrl: process.env.MONGO_URL,
-    crypto: {
-        secret: process.env.SECRET,
-    },
     touchAfter: 24 * 3600,
 });
 
 //if any error in storing 
-storeSession.on('error', (error) =>{
+storeSession.on('error', (error) => {
     console.log("Error in MongoDB Session", error);
 })
 
@@ -81,18 +78,17 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
-// home route
-app.get('/', (req, res, next) => {
-    res.redirect('/listings');
-});
-
 // Session, connect-flash, userLogin/not middleware local variable
-app.use((req, res, next) =>{
+app.use((req, res, next) => {
     res.locals.currUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
+});
+
+// home route
+app.get('/', (req, res, next) => {
+    res.redirect('/listings');
 });
 
 //connect router for listing, review, user
@@ -107,7 +103,7 @@ app.all(/.*/, (req, res, next) => {
 
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something Went Wrong" } = err;
-    res.status(statusCode).render('./listings/error.ejs', { message });
+    return res.status(statusCode).render('./listings/error.ejs', { message });
     // res.status(statusCode).send(message);
 });
 
