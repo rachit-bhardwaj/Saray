@@ -60,7 +60,7 @@ storeSession.on('error', (error) =>{
 
 // session middleware or connect-flash
 const sessionOptions = {
-    storeSession,
+    store: storeSession,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
